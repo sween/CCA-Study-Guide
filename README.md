@@ -10,7 +10,7 @@ You can find all you need to know about the Certification on its official [page]
 
 ### General Overview
 
-- [LinuxFoundationX: Introduction to Cilium](https://www.edx.org/learn/kubernetes/the-linux-foundation-introduction-to-cilium) 📖
+- [ ] [LinuxFoundationX: Introduction to Cilium](https://www.edx.org/learn/kubernetes/the-linux-foundation-introduction-to-cilium) 📖
 
 ### Installation and Configuration - 10%
 
