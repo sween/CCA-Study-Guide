@@ -127,6 +127,11 @@ With Cilium, identity is extracted from the container orchestrator and embedded 
 
 ### Network Policy - 18%
 
+- [ ] Reviewer Layer Mappings
+- [ ] Review Order of Operations with policy, like in the host Firewall lab
+- [ ] Review Policy types
+
+
 #### Topics
 
 - Interpret Cilium Network Polices and Intent
