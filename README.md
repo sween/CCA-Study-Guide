@@ -21,11 +21,11 @@ You can find all you need to know about the Certification on its official [page]
 
 #### Resources
 
-- [Cilium Quick Installation - Cilium Docs](https://docs.cilium.io/en/latest/gettingstarted/k8s-install-default/#k8s-install-quick) 📖
-- [eCHO episode 1: Introduction to Cilium](https://www.youtube.com/watch?v=80OYrzS1dCA&list=PLDg_GiBbAx-mY3VFLPbLHcxo6wUjejAOC&index=114) 📺
-- [Getting Started with Cilium - Lab](https://isovalent.com/labs/getting-started-with-cilium/) 🥼
-- [Tutorial: Tips and Tricks to install Cilium](https://isovalent.com/blog/post/tutorial-tips-and-tricks-to-install-cilium/) 📖
-- [Cilium Command Cheat Sheet - Cilium Docs](https://docs.cilium.io/en/stable/cheatsheet/) 📖
+- [X] [Cilium Quick Installation - Cilium Docs](https://docs.cilium.io/en/latest/gettingstarted/k8s-install-default/#k8s-install-quick) 📖
+- [ ] [eCHO episode 1: Introduction to Cilium](https://www.youtube.com/watch?v=80OYrzS1dCA&list=PLDg_GiBbAx-mY3VFLPbLHcxo6wUjejAOC&index=114) 📺
+- [X] [Getting Started with Cilium - Lab](https://isovalent.com/labs/getting-started-with-cilium/) 🥼
+- [ ] Tutorial: Tips and Tricks to install Cilium](https://isovalent.com/blog/post/tutorial-tips-and-tricks-to-install-cilium/) 📖
+- [ ] [Cilium Command Cheat Sheet - Cilium Docs](https://docs.cilium.io/en/stable/cheatsheet/) 📖
 
 ### Architecture - 20%
 
