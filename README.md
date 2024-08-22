@@ -147,19 +147,42 @@ With Cilium, identity is extracted from the container orchestrator and embedded 
 ![image](https://github.com/user-attachments/assets/626a0d8f-252b-4a17-aecd-97105c2d95fb)
 
 
+![image](https://github.com/user-attachments/assets/13709395-dc5b-4688-825f-30ef8f31f86b)
+
+Identities
+
+![image](https://github.com/user-attachments/assets/0f853307-ef05-4337-a98b-4eca500614f5)
+
+
+
 - [X] [Cilium 1.0: Bringing the BPF Revolution to Kubernetes Networking and Security](https://cilium.io/blog/2018/04/24/cilium-10/) 📖
 - [X] [Cilium Component Overview - Cilium Docs](https://docs.cilium.io/en/stable/overview/component-overview/) 📖
 - [ ] [Cilium eBPF Datapath - Cilium Docs](https://docs.cilium.io/en/stable/network/ebpf/) 📖
 - [ ] [IP Address Management (IPAM) - Cilium Docs](https://docs.cilium.io/en/stable/network/concepts/ipam/) 📖
 - [X] [Cilium Technical Deep Dive: Under the Hood - Talk](https://www.youtube.com/watch?v=UZg_2SXDKis) 📺
-- [ ] [Cilium's BPF kernel datapath revamped - Talk](https://www.youtube.com/watch?v=u0PGas8D24w) 📺
+- [X] [Cilium's BPF kernel datapath revamped - Talk](https://www.youtube.com/watch?v=u0PGas8D24w) 📺
 - [ ] [Terminology - Cilium Docs](https://docs.cilium.io/en/stable/gettingstarted/terminology/) 📖
 
 ### Network Policy - 18%
 
-- [ ] Reviewer Layer Mappings
+- [X] Reviewer Layer Mappings
 - [ ] Review Order of Operations with policy, like in the host Firewall lab
-- [ ] Review Policy types
+- [X] Review Policy types
+NetworkPolicy (k8s), CilliumNetworkPolicy, CilliumClusterWideNetworkPolicy
+
+k8s standard Layers
+![image](https://github.com/user-attachments/assets/76678937-8f71-465d-9dde-d11ae5f79f30)
+
+Cilium Layers
+![image](https://github.com/user-attachments/assets/3b11ed0f-cb9a-4b31-adf6-9d900048aaaa)
+
+Layer 7 Examples
+
+![image](https://github.com/user-attachments/assets/a91d75f1-6c37-41d3-859f-1ae2138d9f40)
+
+WTF
+
+![image](https://github.com/user-attachments/assets/ac8991db-12bd-47a9-9bd1-0475aaa4ee29)
 
 
 #### Topics
@@ -180,6 +203,8 @@ With Cilium, identity is extracted from the container orchestrator and embedded 
 - [From IP to identity: making cattle out of pets in cloud native](https://www.cncf.io/blog/2023/07/24/from-ip-to-identity-making-cattle-out-of-pets-in-cloud-native/) 📖
 - [Zero Trust Security with Cilium](https://isovalent.com/blog/post/zero-trust-security-with-cilium/) 📖
 
+zero trust:
+
 Default allow all so that observability kicks in.
 Create policies for everything talking.
 ensure allow all is workie no more.
@@ -199,6 +224,9 @@ remove allow all policy
 ### Service Mesh - 16%
 
 #### Topics
+
+![image](https://github.com/user-attachments/assets/20b16770-7740-4fa4-bfd7-fdbc21387990)
+
 
 - Know How to use Ingress or Gateway API for Ingress Routing
 - Service Mesh Use Cases
@@ -230,6 +258,17 @@ remove allow all policy
 - Enabling Layer 7 Protocol Visibility
 - Know How to Use Hubble from the Command Line or the Hubble UI
 
+![image](https://github.com/user-attachments/assets/3f4d5b93-758b-4edc-9ef7-7813e0ed35b8)
+
+Prometheus
+
+Sample Grafana deployment and patches...
+
+https://github.com/cilium/cilium/tree/main/examples/kubernetes/addons/prometheus
+
+![image](https://github.com/user-attachments/assets/7580f59e-3026-4126-810f-f2f9d87007ee)
+
+
 #### Resources
 
 - [eCHO episode 2: Introduction to Hubble](https://www.youtube.com/live/hD2iJUyIXQw?si=WqWaY7_jN2B-sRz5) 📺
@@ -244,7 +283,20 @@ remove allow all policy
 #### Topics
 
 - Understand the Benefits of Cluster Mesh for Multi-cluster Connectivity
+
+  ![image](https://github.com/user-attachments/assets/52eafb0d-2505-4a32-a545-56a15e99cdb6)
+
 - Achieve Service Discovery and Load Balancing Across Clusters with Cluster Mesh
+
+  ![image](https://github.com/user-attachments/assets/8029087b-c08e-4c09-b364-e191612ce7a5)
+
+Reqs:
+
+Before you can enable the Cluster Mesh feature, you must make sure certain requirements are met:
+
+All Kubernetes worker nodes must be assigned a unique IP address and all worker nodes must have IP connectivity between each other.
+All clusters must be assigned unique PodCIDR ranges, to prevent pod IP addresses from overlapping across the mesh.
+The network between clusters must allow inter-cluster communication so Cilium agents can access all Cluster Mesh API Servers in the mesh. For public cloud Kubernetes services, this is typically done using virtual private network peering and/or network security group configuration to ensure node-to-node communication between clusters. The exact firewalling requirements will depend on whether Cilium is configured to run in direct-routing or tunneling mode.
 
 #### Resources
 
