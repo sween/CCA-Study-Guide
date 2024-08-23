@@ -176,6 +176,10 @@ Identities
 - [X] Review Policy types
 NetworkPolicy (k8s), CilliumNetworkPolicy, CilliumClusterWideNetworkPolicy
 
+![image](https://github.com/user-attachments/assets/9121bb0b-b69b-4fce-9147-4a167f25011a)
+
+
+
 k8s standard Layers
 ![image](https://github.com/user-attachments/assets/76678937-8f71-465d-9dde-d11ae5f79f30)
 
