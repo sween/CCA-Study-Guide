@@ -40,6 +40,9 @@ root@server:~# cilium install --version=v1.11.1 --encryption wireguard --helm-au
 
 ### Architecture - 20%
 
+![image](https://github.com/user-attachments/assets/8369df2f-2fb1-40f1-9dd6-09d648f10593)
+
+
 #### Topics
 
 - *Understand the Role of Cilium in Kubernetes Environments*
