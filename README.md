@@ -1,4 +1,25 @@
-# Cilium Certified Associate Study Guide
+# Top of Mind
+
+Cilium KVStore mesh
+
+L4 Announcement Feature, Why ?
+
+Hubble, who is responsible for metrics serving ?
+
+EBPF ingress only on nic ?
+
+How to disable policies globally temporarily
+
+
+Net Policy example, bi-directional between two pods, only on 80 at on specific route.
+
+Default Modes (routing)
+
+
+
+
+
+## Cilium Certified Associate Study Guide
 
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC_BY--NC_4.0-lightgrey.svg)](LICENSE)
 ![cca-banner](files/ogimage.jpeg)
