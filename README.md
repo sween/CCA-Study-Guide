@@ -28,6 +28,21 @@ To disable policy enforcement globally in Cilium, you can _configure the Cilium 
 
 To configure the policy enforcement mode, you can adjust the Helm value *policyEnforcementMode* or the configuration flag *enable-policy*
 
+The configuration of the Cilium agent and the Cilium Network Policy determines whether an endpoint accepts traffic from a source or not. The agent can be put into the following three policy enforcement modes:
+
+default  <-------------
+This is the default behavior for policy enforcement. In this mode, endpoints have unrestricted network access until selected by policy. Upon being selected by a policy, the endpoint permits only allowed traffic. This state is per-direction and can be adjusted on a per-policy basis. For more details, see the dedicated section on default mode.
+
+always
+With always mode, policy enforcement is enabled on all endpoints even if no rules select specific endpoints.
+
+If you want to configure health entity to check cluster-wide connectivity when you start cilium-agent with enable-policy: always, you will likely want to enable communications to and from the health endpoint. See Example: Add Health Endpoint.
+
+never
+With never mode, policy enforcement is disabled on all endpoints, even if rules do select specific endpoints. In other words, all traffic is allowed from any source (on ingress) or destination (on egress).
+
+To configure the policy enforcement mode, adjust the Helm value policyEnforcementMode or the corresponding configuration flag enable-policy.
+
 *Envoy*
 Envoy proxy is a key component of Cilium that acts as a host proxy to enforce HTTP and other L7 policies. Cilium uses Envoy for many Service Mesh needs, including: L7 Network Policies, L7 observability, and L7 internal load-balancing
 
