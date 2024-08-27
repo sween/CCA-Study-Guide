@@ -60,12 +60,19 @@ spec:
           path: "/v1/request-landing"
 ```
 
-Default Modes (routing)
+*Default Modes (routing*
 
+Cilium, a Kubernetes cluster networking tool, has two main routing modes for traffic between nodes: encapsulation and direct routing, also known as native routing: 
 
+Encapsulation [ default ]
+This mode is enabled by default when Cilium is deployed. It uses tunneling mechanisms like GENEVE or VXLAN (SDN Overlays) to create tunnels between all nodes in a cluster. This mode has the fewest requirements on the underlying networking infrastructure. 
 
-CNI Chaining Modes
+Direct routing
+Also known as native routing, this mode may be selected by Cilium install depending on the cloud environment. 
 
+*CNI Chaining Modes*
+
+With Cilium CNI chaining, the base network connectivity and IP address management is managed by the non-Cilium CNI plugin, but Cilium attaches eBPF programs to the network devices created by the non-Cilium plugin to provide L3/L4 network visibility, policy enforcement and other advanced features.
 
 
 ## Cilium Certified Associate Study Guide
