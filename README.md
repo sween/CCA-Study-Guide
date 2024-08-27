@@ -36,6 +36,7 @@ Net Policy example, bi-directional between two pods, only on 80 at on specific r
 '
 The Cilium Operator is responsible for managing duties in the cluster which should logically be handled once for the entire cluster, rather than once for each node in the cluster. 
 
+```
 kind: CiliumNetworkPolicy
 metadata:
   name: "rule1"
@@ -57,6 +58,7 @@ spec:
         http:
         - method: "POST"
           path: "/v1/request-landing"
+```
 
 Default Modes (routing)
 
