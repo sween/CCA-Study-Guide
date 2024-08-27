@@ -75,6 +75,20 @@ Also known as native routing, this mode may be selected by Cilium install depend
 With Cilium CNI chaining, the base network connectivity and IP address management is managed by the non-Cilium CNI plugin, but Cilium attaches eBPF programs to the network devices created by the non-Cilium plugin to provide L3/L4 network visibility, policy enforcement and other advanced features.
 
 
+*Metrics Enable by Default*
+
+By default, Cilium, Hubble, and Cilium Operator do not expose metrics. Enabling metrics for these services will open ports on all nodes of your cluster where these components are running. 
+Here are some ways to enable metrics for Cilium: 
+
+Cilium-agent
+You can enable metrics for cilium-agent (including Envoy) with the Helm value prometheus.enabled=true. You can also configure ports via prometheus.port, envoy.prometheus.port, or operator.prometheus. 
+
+Cilium-operator
+Cilium-operator metrics are enabled by default, but you can disable them by setting the Helm value operator.prometheus.enabled=false. You can collect cilium-operator metrics by providing operator_endpoint instead of agent_endpoint. For example, you can use operator_endpoint: http://localhost:6942/metrics. 
+
+Prometheus
+You can enable Prometheus metrics on all Cilium agents by enabling Prometheus metrics on all Cilium agents, restarting all Cilium agents, and installing all monitoring tools and configurations
+
 ## Cilium Certified Associate Study Guide
 
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC_BY--NC_4.0-lightgrey.svg)](LICENSE)
@@ -102,6 +116,14 @@ You can find all you need to know about the Certification on its official [page]
 - [X] [eCHO episode 1: Introduction to Cilium](https://www.youtube.com/watch?v=80OYrzS1dCA&list=PLDg_GiBbAx-mY3VFLPbLHcxo6wUjejAOC&index=114) 📺
 - [X] [Getting Started with Cilium - Lab](https://isovalent.com/labs/getting-started-with-cilium/) 🥼
 - [X] Tutorial: Tips and Tricks to install Cilium](https://isovalent.com/blog/post/tutorial-tips-and-tricks-to-install-cilium/) 📖
+
+```
+$ cilium connectivity test
+...
+✅ All 32 tests (263 actions) successful, 2 tests skipped, 1 scenarios skipped.
+
+```
+
 ```
 cilium install \
     --helm-set ipam.mode=kubernetes \
@@ -317,8 +339,8 @@ remove allow all policy
 
 - Know How to use Ingress or Gateway API for Ingress Routing
 - Service Mesh Use Cases
-- Understand the Benefits of Gateway API over Ingress
-- Encrypting Traffic in Transit with Cilium
+- Understand the Benefits of Gateway API over Ingress <---layer 7 stuff
+- Encrypting Traffic in Transit with Cilium  <---ipsec for nodes, wireguard for pods
 - Sidecar-based versus Sidecarless Architectures
 
 #### Resources
@@ -434,6 +456,22 @@ The network between clusters must allow inter-cluster communication so Cilium ag
 - [Cilium Egress Gateway - Lab](https://isovalent.com/labs/cilium-egress-gateway/) 🥼
 - [Cilium L2 Announcements - Cilium Docs](https://docs.cilium.io/en/stable/network/l2-announcements/) 📖
 - [Cilium LoadBalancer IPAM and L2 Service Announcement - Lab](https://isovalent.com/labs/cilium-loadbalancer-ipam-and-l2-service-announcement/) 🥼
+
+Here are some ways to restart Cilium: 
+Restart the Cilium agent
+Restarting the Cilium agent will cause the BGP session to be lost, but it will be restored once the agent restarts. However, while the agent is down, advertised routes will be removed from the BGP peer, which may cause temporary connectivity loss to Pods or Services. To continue forwarding traffic during the restart, you can enable Graceful Restart. 
+Use the Kubernetes liveness probe
+If Cilium encounters an unrecoverable problem, it will automatically report the failure state via cilium-dbg status. The Kubernetes liveness probe will then regularly query this status and automatically restart Cilium pods. 
+Use the kubectl command
+You can use the kubectl command to restart Cilium. For example, you can use the following commands to migrate a cluster to Cilium: 
+kubectl cordon $NODE 
+kubectl drain --ignore-daemonsets $NODE 
+kubectl label node $NODE --overwrite "io.cilium.migration/cilium-default=true" 
+kubectl -n kube-system delete pod --field-selector spec.nodeName=$NODE -l k8s-app=cilium 
+kubectl -n kube-system rollout status ds/cilium -w 
+Reboot the node 
+kubectl uncordon $NODE 
+
 
 ## Next Steps
 
