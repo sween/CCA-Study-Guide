@@ -1,14 +1,34 @@
 # Top of Mind
 
-Cilium KVStore mesh
+*Cilium KVStore mesh*
 
-L4 Announcement Feature, Why ?
+KVStoreMesh is an extension of Cluster Mesh. It caches the information obtained from the remote clusters in a local kvstore (such as etcd), to which all local Cilium agents connect. _This is different from vanilla Cluster Mesh, where each agent directly pulls the information from the remote clusters_. KVStoreMesh enables improved scalability and isolation.
 
-Hubble, who is responsible for metrics serving ?
+*L2 Announcement Feature, Why ?*
+
+L2 Announcements is a feature which makes services visible and reachable on the local area network. _This feature is primarily intended for on-premises deployments within networks without BGP based routing such as office or campus networks._
+
+*Hubble, who is responsible for metrics serving ?*
+
+Hubble is made up of several components.
+
+The Hubble server runs on each node and retrieves the eBPF-based visibility from Cilium. It is embedded into the Cilium agent in order to achieve high performance and low-overhead. It offers a gRPC service to retrieve flows and expose Prometheus metrics.
+
+![image](https://github.com/user-attachments/assets/581d5e9e-13d3-4868-b92e-e954f24e6772)
+
 
 EBPF ingress only on nic ?
 
+XDP
+Ingress only, any traffic that you see with an XDP program is only incoming and there is currently no way of seeing traffic that is .
+
 How to disable policies globally temporarily
+
+To disable policy enforcement globally in Cilium, you can _configure the Cilium agent to use the Never policy enforcement mode_. In this mode, all endpoints disable policy enforcement, even if rules select specific endpoints. This allows all traffic from any source or destination, regardless of the rules.
+
+To configure the policy enforcement mode, you can adjust the Helm value *policyEnforcementMode* or the configuration flag *enable-policy*
+
+
 
 
 Net Policy example, bi-directional between two pods, only on 80 at on specific route.
@@ -16,6 +36,8 @@ Net Policy example, bi-directional between two pods, only on 80 at on specific r
 Default Modes (routing)
 
 
+
+CNI Chaining Modes
 
 
 
