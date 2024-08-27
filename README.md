@@ -28,13 +28,12 @@ To disable policy enforcement globally in Cilium, you can _configure the Cilium 
 
 To configure the policy enforcement mode, you can adjust the Helm value *policyEnforcementMode* or the configuration flag *enable-policy*
 
+*Envoy*
+Envoy proxy is a key component of Cilium that acts as a host proxy to enforce HTTP and other L7 policies. Cilium uses Envoy for many Service Mesh needs, including: L7 Network Policies, L7 observability, and L7 internal load-balancing
 
-
+The Cilium Operator is responsible for managing duties in the cluster which should logically be handled once for the entire cluster, rather than once for each node in the cluster. 
 
 Net Policy example, bi-directional between two pods, only on 80 at on specific route.
-
-'
-The Cilium Operator is responsible for managing duties in the cluster which should logically be handled once for the entire cluster, rather than once for each node in the cluster. 
 
 ```
 kind: CiliumNetworkPolicy
