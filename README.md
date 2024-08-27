@@ -33,6 +33,31 @@ To configure the policy enforcement mode, you can adjust the Helm value *policyE
 
 Net Policy example, bi-directional between two pods, only on 80 at on specific route.
 
+'
+The Cilium Operator is responsible for managing duties in the cluster which should logically be handled once for the entire cluster, rather than once for each node in the cluster. 
+
+kind: CiliumNetworkPolicy
+metadata:
+  name: "rule1"
+spec:
+  description: "L7 policy to restrict access to specific HTTP call"
+  endpointSelector:
+    matchLabels:
+      org: empire
+      class: deathstar
+  ingress:
+  - fromEndpoints:
+    - matchLabels:
+        org: empire
+    toPorts:
+    - ports:
+      - port: "80"
+        protocol: TCP
+      rules:
+        http:
+        - method: "POST"
+          path: "/v1/request-landing"
+
 Default Modes (routing)
 
 
