@@ -2,15 +2,15 @@
 
 Cilium provides various entities (most of which map to special identities):
 
-host: the local host (and local containers running in host networking mode)
-remote-node: any node in the cluster (or containers running on host networking mode on these nodes) other than host
-kube-apiserver: the Kube API server
-cluster: any network endpoints inside the local cluster (endpoints, host, remote-host, and init)
-init: all endpoints in bootstrap phase (no security identity yet)
-health: Cilium's health endpoints (one per node)
-unmanaged: endpoints not managed by Cilium
-world: all endpoints outside of the cluster
-all: anything
+- host: the local host (and local containers running in host networking mode)
+- remote-node: any node in the cluster (or containers running on host networking mode on these nodes) other than host
+- kube-apiserver: the Kube API server
+- cluster: any network endpoints inside the local cluster (endpoints, host, remote-host, and init)
+- init: all endpoints in bootstrap phase (no security identity yet)
+- health: Cilium's health endpoints (one per node)
+- unmanaged: endpoints not managed by Cilium
+- world: all endpoints outside of the cluster
+- all: anything
 
 All these entities can be used in Cilium Network Policies by using the toEntities or fromEntities keys.
 
